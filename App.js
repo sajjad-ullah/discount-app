@@ -1,13 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View,TextInput} from 'react-native';
 
 export default function App() {
   const [getprice,setprice]=useState(0);
   const [getsave,setsave]=useState(0);
   const [getfinal,setfinal]=useState(0);
-  const calculate=(txt)=>{
-    var temp=getprice * (txt/100)
+  const [getdiscount,setdiscount]=useState(0);
+  useEffect(() => {
+    {getdiscount};
+    {getprice};
+    calculate();
+   
+  });
+  const calculate=()=>{
+   
+    var temp=getprice * (getdiscount/100)
     setsave(temp)
     setfinal(getprice-temp)
   }
@@ -17,13 +25,17 @@ export default function App() {
       <TextInput
         style={styles.InputField}
         placeholder="Original Price"
+        keyboardType = 'number-pad'
         onChangeText={text => setprice(text)}
+        
       />
       <TextInput
         style={styles.InputField}
         placeholder="Discount Percentage"
-        onChangeText={text=>calculate(text)}
+        keyboardType = 'number-pad'
+        onChangeText={text => setdiscount(text)}
       />
+      
       <StatusBar style="auto" />
       <View>
         <Text style={styles.result}>You Save    : {getsave}</Text>
