@@ -26,8 +26,8 @@ export default function App() {
       />
       <StatusBar style="auto" />
       <View>
-        <Text style={styles.result}>You Save :{getsave}</Text>
-        <Text style={styles.result}>Final Price :{getfinal}</Text>
+        <Text style={styles.result}>You Save    : {getsave}</Text>
+        <Text style={styles.result}>Final Price : {getfinal}</Text>
       
       </View>
       
