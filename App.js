@@ -3,21 +3,20 @@ import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View,TextInput} from 'react-native';
 
 export default function App() {
-  const [getprice,setprice]=useState(0);
+  const [getprice,setprice]=useState('');
   const [getsave,setsave]=useState(0);
   const [getfinal,setfinal]=useState(0);
-  const [getdiscount,setdiscount]=useState(0);
+  const [getdiscount,setdiscount]=useState('');
   useEffect(() => {
-    {getdiscount};
-    {getprice};
     calculate();
    
   });
   const calculate=()=>{
-   
+    if(getprice!= NaN){
+    
     var temp=getprice * (getdiscount/100)
     setsave(temp)
-    setfinal(getprice-temp)
+    setfinal(getprice-temp)}
   }
   return (
     <View style={styles.container}>
@@ -26,14 +25,27 @@ export default function App() {
         style={styles.InputField}
         placeholder="Original Price"
         keyboardType = 'number-pad'
-        onChangeText={text => setprice(text)}
+        onChangeText={text =>{
+        if(!isNaN(text)){
+          setprice(text)
+        }
+     
+        }
+        
+        }
+        value={getprice}
         
       />
       <TextInput
         style={styles.InputField}
         placeholder="Discount Percentage"
         keyboardType = 'number-pad'
-        onChangeText={text => setdiscount(text)}
+        onChangeText={text => {
+          if(!isNaN(text) && text<=100){
+          setdiscount(text)
+          }}}
+          value={getdiscount}
+        
       />
       
       <StatusBar style="auto" />
