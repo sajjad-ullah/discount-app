@@ -105,7 +105,7 @@ function HistoryScreen({navigation,route}){
     headerRight: () => (
       <TouchableOpacity
       style={{alignContent:'center',marginRight:5}}
-      onPress={()=>{navigation.navigate('Home',{item: []})}}
+      onPress={()=>{clearall()}}
       >
         <Text style={{textAlign:'center',backgroundColor:'red',padding:10,color:'white',fontSize:18}}>Clear History</Text>
       </TouchableOpacity>
@@ -116,6 +116,10 @@ function HistoryScreen({navigation,route}){
   function deleteitem(txt){
    const temp=data.filter((item) => item.id !== txt);
    setdata(temp);
+  }
+  function clearall(){
+    const temp=[];
+    setdata(temp);
   }
   return(
   
